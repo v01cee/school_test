@@ -23,12 +23,13 @@ questions_test1 = [
 ]
 
 photo_id_test1 = [
-    "AgACAgIAAxkBAAICG2hAouii9zcvN0UFHcaWTzPFRRMMAAK-9DEbl-YISlmbd2x7kfrDAQADAgADeAADNgQ",
-    "AgACAgIAAxkBAAICHWhAo0YeRDmjCW2JqTQV0nsX9DDcAAK_9DEbl-YISulRWnoGX6T9AQADAgADeAADNgQ",
-    "AgACAgIAAxkBAAICH2hAo2IHm6jSr8m_0Pa6KelmA4wWAALA9DEbl-YISvLQiOk9y1BTAQADAgADeAADNgQ",
-    "AgACAgIAAxkBAAIDGGhFv-Kaq131YFb3yLND7T2YCI5UAAKS-DEb1SkxStsPzcfaOTPhAQADAgADeAADNgQ",
-    "AgACAgIAAxkBAAICNGhBbBnLlZl5e1O1nPXdEn17dd5fAAKC9DEbl-YQSohD62EszQHnAQADAgADeQADNgQ"
+    "AgACAgIAAxkBAAMaaEsZ5d05RIh_3UMkecU985PVWDUAAk72MRsyHFlKJJ_deo-_X1YBAAMCAAN4AAM2BA",
+    "AgACAgIAAxkBAAMeaEsaRGKsUm7H8DweLULCmllgihYAAnv2MRsyHFlK6Xv9Q5IylusBAAMCAAN4AAM2BA",
+    "AgACAgIAAxkBAAMhaEsaXetabSflFP0iEYqnW3wnhwUAApvzMRtas1lKMC_tYOJcC0YBAAMCAAN4AAM2BA",
+    "AgACAgIAAxkBAAMjaEsabMljYn8_qxxVQGPoZALjz7IAAn32MRsyHFlKabRizonS6_UBAAMCAAN4AAM2BA",
+    "AgACAgIAAxkBAAMlaEsakZyc9xd93WmYYN7kzHg7RiUAAn_2MRsyHFlKiNHiszdYHvoBAAMCAAN5AAM2BA"
 ]
+photo_id_test2 = ["AgACAgIAAxkBAAMnaEsatTtFqc56kuJbT-Pu7hc6dZ0AAoH2MRsyHFlKWNXvpm8AAebvAQADAgADeAADNgQ"]
 questions_test2 = [
     "Горизонталь\n1. Консультативный орган Совета при Президенте Российской Федерации по науке и образованию, образованный в целях обеспечения взаимодействия Совета по науке и образованию с общественными молодежными объединениями и организациями при рассмотрении вопросов, связанных с развитием науки и образования\n2. Тематические социально - значимые направления, которые могут включать в себя несколько проектов, объединенных общей идеей или целью\n3. Широкий круг деятельности, включая традиционные формы взаимопомощи и самопомощи, сбора средств, официальное предоставление услуг и другие формы гражданского участия, которая осуществляется добровольно на благо широкой общественности без денежного вознаграждения\n\nВводить нужно через запятую по порядку",
     "Привлечение добровольцев к деятельности, которая важна для проведения научных исследований – это?\nВарианты ответа\n1 - Научное волонтерство\n2 - Научное познание\n3 - Научное открытие\n4 - Научный квиз",
@@ -105,8 +106,5 @@ callbacks_test2 = [
     ["test2_uncorrect", "test2_correct", "test2_uncorrect", "test2_uncorrect"]
 ]
 
-photo_id_test2 = [
-    "AgACAgIAAxkBAAICMmhAp6C9SsAYH1IELosqZl6gfy3qAALc9DEbl-YISkavs_HmYdu2AQADAgADeAADNgQ",
-]
 
 
