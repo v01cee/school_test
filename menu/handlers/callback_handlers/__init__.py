@@ -1,0 +1,1 @@
+from menu.handlers.callback_handlers.menu import menu_callback_router

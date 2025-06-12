@@ -1,0 +1,3 @@
+from menu.handlers.command import start_router
+from menu.handlers.callback_handlers import menu_callback_router
+from menu.handlers.state_handler import menu_state_router
