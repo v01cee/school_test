@@ -1,6 +1,7 @@
 from io import BytesIO
 
 from aiogram import F, Router, Bot, types
+from aiogram.filters import Command
 from aiogram.types import CallbackQuery, Message, InputFile, FSInputFile, InputMediaPhoto
 from aiogram.fsm.context import FSMContext
 
@@ -27,3 +28,9 @@ async def table_admin(call: CallbackQuery, variables: Variables):
         document=document,
         caption="📊 Общая таблица результатов"
     )
+
+
+@admin_callback_router.message(Command("reset"))
+async def reset_state(message: Message, state: FSMContext):
+    await state.clear()
+    await message.answer("✅ Ваше состояние очищено.")

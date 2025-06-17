@@ -13,7 +13,9 @@ from middlewares.basic_middleware import BasicMiddleware
 from settings import env_settings
 from core.routers import routers
 from aiogram import Router, F
-from aiogram.types import Message
+from aiogram.types import Message, BotCommand
+
+
 
 async def main():
     logging.basicConfig(level=logging.INFO)
