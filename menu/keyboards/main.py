@@ -10,6 +10,10 @@ class MenuKeyboard(KeyboardOperations):
            }
         return await self.create_keyboard(buttons=buttons)
 
+    async def confirm_data(self):
+        buttons = {"Даю согласие": "give_confirmation"}
+        return await self.create_keyboard(buttons=buttons)
+
     async def choose_test(self):
         buttons = {
             "Школьник": "group_one",

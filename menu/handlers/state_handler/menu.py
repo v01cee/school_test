@@ -106,9 +106,9 @@ async def educational_organization(message: Message, variables: Variables):
 @menu_state_router.message(F.text, StateFilter(MenuStates.email))
 async def email(message: Message, variables: Variables):
     email = message.text
-    keyboard = await variables.keyboards.menu.menu()
     variables.db.user.update(user_id=message.from_user.id, email=email)
+    keyboard = await variables.keyboards.menu.confirm_data()
     await message.answer(
-        text="Регистрация прошла успешно",
+        text="Продолжая, вы даёте согласие на обработку ваших персональных данных",
         reply_markup=keyboard
     )

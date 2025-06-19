@@ -242,3 +242,12 @@ async def congress(call: CallbackQuery, state: FSMContext, variables: Variables)
     await call.message.edit_text(
         text="5. Адрес элеткронной почты"
     )
+
+
+@menu_callback_router.callback_query(F.data == "give_confirmation")
+async def confirmation_handler(call: CallbackQuery, variables: Variables):
+    keyboard = await variables.keyboards.menu.menu()
+    await call.message.edit_text(
+        text="Регистрация прошла успешно",
+        reply_markup=keyboard
+    )
