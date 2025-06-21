@@ -240,7 +240,7 @@ async def congress(call: CallbackQuery, state: FSMContext, variables: Variables)
     variables.db.user.update(user_id=call.from_user.id, congress=congress)
     await state.set_state(MenuStates.email)
     await call.message.edit_text(
-        text="5. Адрес элеткронной почты"
+        text="5. Адрес электронной почты"
     )
 
 
