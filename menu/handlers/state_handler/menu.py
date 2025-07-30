@@ -4,12 +4,10 @@ from aiogram import Router, F
 from aiogram.enums import InputMediaType
 from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
-from aiogram.types import Message
-# from aiogram.types import InputMediaPhoto
+from aiogram.types import Message, InputMediaPhoto
 
-from core.utils.photo_id import questions_test1, answers_choices_test1, answers_choices_test2, \
+from core.utils.photo_id import photo_id_test1, questions_test1, answers_choices_test1, answers_choices_test2, \
     questions_test2
-# from core.utils.photo_id import photo_id_test1
 from menu.fsm.menu import MenuStates
 from middlewares.enums import Variables
 
@@ -34,12 +32,9 @@ async def test(message: Message, state: FSMContext, variables: Variables):
             answer_number=answer_number,
             points=points
         )
-        # await message.answer_photo(
-        #     photo=photo_id_test1[answer_number],
-        #     caption=questions_test1[answer_number]
-        # )
-        await message.answer(
-            text=questions_test1[answer_number]
+        await message.answer_photo(
+            photo=photo_id_test1[answer_number],
+            caption=questions_test1[answer_number]
         )
     elif answer_number == 4:
         answer_number += 1

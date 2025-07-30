@@ -1,13 +1,11 @@
 from aiogram import F, Router, Bot
-from aiogram.types import CallbackQuery, Message, InputFile, FSInputFile
-# from aiogram.types import InputMediaPhoto
+from aiogram.types import CallbackQuery, Message, InputFile, FSInputFile, InputMediaPhoto
 from aiogram.fsm.context import FSMContext
 
 from core.utils.excel import send_test_results_to_group
 from menu.fsm.menu import MenuStates
 from middlewares.enums import Variables
-from core.utils.photo_id import questions_test2, questions_test1
-# from core.utils.photo_id import photo_id_test1, photo_id_test2
+from core.utils.photo_id import photo_id_test1, photo_id_test2, questions_test2, questions_test1
 
 menu_callback_router = Router()
 
@@ -52,24 +50,18 @@ async def start_test(call: CallbackQuery, state: FSMContext, variables: Variable
     )
     if number_test == 1:
         await state.set_state(MenuStates.test1)
-        # await call.message.edit_media(
-        #     media=InputMediaPhoto(
-        #         media=photo_id_test1[answer_number],
-        #         caption=questions_test1[0]  # Текст подписи к медиа
-        #     )
-        # )
-        await call.message.edit_text(
-            text=questions_test1[0]
+        await call.message.edit_media(
+            media=InputMediaPhoto(
+                media=photo_id_test1[answer_number],
+                caption=questions_test1[0]  # Текст подписи к медиа
+            )
         )
     else:
         await state.set_state(MenuStates.test2)
-        # await call.message.edit_media(
-        #     InputMediaPhoto(
-        #         media=photo_id_test2[answer_number],
-        #         caption=questions_test2[0])
-        # )
-        await call.message.edit_text(
-            text=questions_test2[0]
+        await call.message.edit_media(
+            InputMediaPhoto(
+                media=photo_id_test2[answer_number],
+                caption=questions_test2[0])
         )
 
 @menu_callback_router.callback_query(F.data.startswith("test1_"))
