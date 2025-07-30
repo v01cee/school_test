@@ -1,11 +1,13 @@
 from aiogram import F, Router, Bot
-from aiogram.types import CallbackQuery, Message, InputFile, FSInputFile, InputMediaPhoto
+from aiogram.types import CallbackQuery, Message, InputFile, FSInputFile
+# from aiogram.types import InputMediaPhoto
 from aiogram.fsm.context import FSMContext
 
 from core.utils.excel import send_test_results_to_group
 from menu.fsm.menu import MenuStates
 from middlewares.enums import Variables
-from core.utils.photo_id import photo_id_test1, photo_id_test2, questions_test2, questions_test1
+from core.utils.photo_id import questions_test2, questions_test1
+# from core.utils.photo_id import photo_id_test1, photo_id_test2
 
 menu_callback_router = Router()
 
@@ -50,18 +52,24 @@ async def start_test(call: CallbackQuery, state: FSMContext, variables: Variable
     )
     if number_test == 1:
         await state.set_state(MenuStates.test1)
-        await call.message.edit_media(
-            media=InputMediaPhoto(
-                media=photo_id_test1[answer_number],
-                caption=questions_test1[0]  # Текст подписи к медиа
-            )
+        # await call.message.edit_media(
+        #     media=InputMediaPhoto(
+        #         media=photo_id_test1[answer_number],
+        #         caption=questions_test1[0]  # Текст подписи к медиа
+        #     )
+        # )
+        await call.message.edit_text(
+            text=questions_test1[0]
         )
     else:
         await state.set_state(MenuStates.test2)
-        await call.message.edit_media(
-            InputMediaPhoto(
-                media=photo_id_test2[answer_number],
-                caption=questions_test2[0])
+        # await call.message.edit_media(
+        #     InputMediaPhoto(
+        #         media=photo_id_test2[answer_number],
+        #         caption=questions_test2[0])
+        # )
+        await call.message.edit_text(
+            text=questions_test2[0]
         )
 
 @menu_callback_router.callback_query(F.data.startswith("test1_"))
@@ -83,9 +91,14 @@ async def test1_question(call: CallbackQuery, bot: Bot, state: FSMContext, varia
             points += 5
             results[answer_number + 1] = "1"
         if answer_number == 19:
-            keyboard = await variables.keyboards.menu.menu()
+            keyboard = await variables.keyboards.menu.test_completion()
             await call.message.edit_text(
-                text=f"Теперь вы стали ещё ближе к науке!\nСо всеми инициативами Десятилетия науки и технологий вы можете ознакомиться на сайте\nhttps://наука.рф\nВаши результаты: {points} баллов из 100",
+                text=f"🎉 <b>Поздравляем! Тест завершен!</b>\n\n"
+                     f"Теперь вы стали ещё ближе к науке!\n"
+                     f"Со всеми инициативами Десятилетия науки и технологий вы можете ознакомиться на сайте\n"
+                     f"https://наука.рф\n\n"
+                     f"📊 <b>Ваши результаты: {points} баллов из 100</b>\n\n"
+                     f"Если у вас есть вопросы, свяжитесь с организаторами.",
                 reply_markup=keyboard
             )
             test_data = {
@@ -115,9 +128,14 @@ async def test1_question(call: CallbackQuery, bot: Bot, state: FSMContext, varia
         )
     else:
         if answer_number == 19:
-            keyboard = await variables.keyboards.menu.menu()
+            keyboard = await variables.keyboards.menu.test_completion()
             await call.message.edit_text(
-                text=f"Теперь вы стали ещё ближе к науке!\nСо всеми инициативами Десятилетия науки и технологий вы можете ознакомиться на сайте\nhttps://наука.рф\nВаши результаты: {points} баллов из 100",
+                text=f"🎉 <b>Поздравляем! Тест завершен!</b>\n\n"
+                     f"Теперь вы стали ещё ближе к науке!\n"
+                     f"Со всеми инициативами Десятилетия науки и технологий вы можете ознакомиться на сайте\n"
+                     f"https://наука.рф\n\n"
+                     f"📊 <b>Ваши результаты: {points} баллов из 100</b>\n\n"
+                     f"Если у вас есть вопросы, свяжитесь с организаторами.",
                 reply_markup=keyboard
             )
             test_data = {
@@ -158,9 +176,14 @@ async def test2_question(call: CallbackQuery, bot: Bot, state: FSMContext, varia
             points += 5
             results[answer_number + 1] = "1"
         elif answer_number == 19:
-            keyboard = await variables.keyboards.menu.menu()
+            keyboard = await variables.keyboards.menu.test_completion()
             await call.message.edit_text(
-                text=f"Теперь вы стали ещё ближе к науке!\nСо всеми инициативами Десятилетия науки и технологий вы можете ознакомиться на сайте\nhttps://наука.рф\nВаши результаты: {points} баллов из 100",
+                text=f"🎉 <b>Поздравляем! Тест завершен!</b>\n\n"
+                     f"Теперь вы стали ещё ближе к науке!\n"
+                     f"Со всеми инициативами Десятилетия науки и технологий вы можете ознакомиться на сайте\n"
+                     f"https://наука.рф\n\n"
+                     f"📊 <b>Ваши результаты: {points} баллов из 100</b>\n\n"
+                     f"Если у вас есть вопросы, свяжитесь с организаторами.",
                 reply_markup=keyboard
             )
             test_data = {
@@ -189,9 +212,14 @@ async def test2_question(call: CallbackQuery, bot: Bot, state: FSMContext, varia
         )
     else:
         if answer_number == 19:
-            keyboard = await variables.keyboards.menu.menu()
+            keyboard = await variables.keyboards.menu.test_completion()
             await call.message.edit_text(
-                text=f"Теперь вы стали ещё ближе к науке!\nСо всеми инициативами Десятилетия науки и технологий вы можете ознакомиться на сайте\nhttps://наука.рф\nВаши результаты: {points} баллов из 100",
+                text=f"🎉 <b>Поздравляем! Тест завершен!</b>\n\n"
+                     f"Теперь вы стали ещё ближе к науке!\n"
+                     f"Со всеми инициативами Десятилетия науки и технологий вы можете ознакомиться на сайте\n"
+                     f"https://наука.рф\n\n"
+                     f"📊 <b>Ваши результаты: {points} баллов из 100</b>\n\n"
+                     f"Если у вас есть вопросы, свяжитесь с организаторами.",
                 reply_markup=keyboard
             )
             test_data = {
@@ -245,9 +273,13 @@ async def congress(call: CallbackQuery, state: FSMContext, variables: Variables)
 
 
 @menu_callback_router.callback_query(F.data == "give_confirmation")
-async def confirmation_handler(call: CallbackQuery, variables: Variables):
+async def confirmation_handler(call: CallbackQuery, state: FSMContext, variables: Variables):
+    # Очищаем состояние
+    await state.clear()
     keyboard = await variables.keyboards.menu.menu()
     await call.message.edit_text(
-        text="Регистрация прошла успешно",
+        text="✅ <b>Регистрация прошла успешно!</b>\n\n"
+             "Спасибо за согласие на обработку персональных данных.\n"
+             "Теперь вы можете пройти тестирование.",
         reply_markup=keyboard
     )

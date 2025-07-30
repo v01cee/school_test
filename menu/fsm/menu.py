@@ -7,3 +7,4 @@ class MenuStates(StatesGroup):
     registration = State()
     educational_organization = State()
     email = State()
+    consent = State()

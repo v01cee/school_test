@@ -14,6 +14,14 @@ class MenuKeyboard(KeyboardOperations):
         buttons = {"Даю согласие": "give_confirmation"}
         return await self.create_keyboard(buttons=buttons)
 
+    async def consent_keyboard(self):
+        """Клавиатура для согласия на обработку персональных данных"""
+        buttons = {
+            "📄 Читать согласие на обработку персональных данных": ["url", "https://telegra.ph/SOGLASIE-NA-OBRABOTKU-I-PEREDACHU-PERSONALNYH-DANNYH-07-30"],
+            "✅ Даю согласие": "give_confirmation"
+        }
+        return await self.create_keyboard(buttons=buttons)
+
     async def choose_test(self):
         buttons = {
             "Школьник": "group_one",
@@ -62,5 +70,13 @@ class MenuKeyboard(KeyboardOperations):
         buttons = {
             "Да": "congress_yes",
             "Нет": "congress_no"
+        }
+        return await self.create_keyboard(buttons=buttons)
+
+    async def test_completion(self):
+        """Клавиатура для завершения теста с кнопкой связи с организаторами"""
+        buttons = {
+            "📞 Связаться с организаторами": ["url", "https://t.me/lmedvedeva1988"],
+            "🏠 Главное меню": self.path
         }
         return await self.create_keyboard(buttons=buttons)

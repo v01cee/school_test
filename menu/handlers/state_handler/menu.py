@@ -4,10 +4,12 @@ from aiogram import Router, F
 from aiogram.enums import InputMediaType
 from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
-from aiogram.types import Message, InputMediaPhoto
+from aiogram.types import Message
+# from aiogram.types import InputMediaPhoto
 
-from core.utils.photo_id import photo_id_test1, questions_test1, answers_choices_test1, answers_choices_test2, \
+from core.utils.photo_id import questions_test1, answers_choices_test1, answers_choices_test2, \
     questions_test2
+# from core.utils.photo_id import photo_id_test1
 from menu.fsm.menu import MenuStates
 from middlewares.enums import Variables
 
@@ -32,9 +34,12 @@ async def test(message: Message, state: FSMContext, variables: Variables):
             answer_number=answer_number,
             points=points
         )
-        await message.answer_photo(
-            photo=photo_id_test1[answer_number],
-            caption=questions_test1[answer_number]
+        # await message.answer_photo(
+        #     photo=photo_id_test1[answer_number],
+        #     caption=questions_test1[answer_number]
+        # )
+        await message.answer(
+            text=questions_test1[answer_number]
         )
     elif answer_number == 4:
         answer_number += 1
@@ -104,11 +109,14 @@ async def educational_organization(message: Message, variables: Variables):
     )
 
 @menu_state_router.message(F.text, StateFilter(MenuStates.email))
-async def email(message: Message, variables: Variables):
+async def email(message: Message, state: FSMContext, variables: Variables):
     email = message.text
     variables.db.user.update(user_id=message.from_user.id, email=email)
-    keyboard = await variables.keyboards.menu.confirm_data()
+    await state.set_state(MenuStates.consent)
+    keyboard = await variables.keyboards.menu.consent_keyboard()
     await message.answer(
-        text="Продолжая, вы даёте согласие на обработку ваших персональных данных",
+        text="📋 <b>Согласие на обработку персональных данных</b>\n\n"
+             "Для продолжения работы с ботом необходимо дать согласие на обработку ваших персональных данных.\n\n"
+             "Пожалуйста, ознакомьтесь с документом согласия и подтвердите свое согласие.",
         reply_markup=keyboard
     )
