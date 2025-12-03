@@ -16,6 +16,7 @@
 ```env
 BOT_TOKEN=your_bot_token_here
 # Для SQLite в Docker используйте абсолютный путь (4 слеша!)
+# ВАЖНО: Не используйте пробелы вокруг = и кавычки!
 DATABASE_URL=sqlite:////app/data/bot_database.db
 ADMINS=123456789,987654321
 ```
