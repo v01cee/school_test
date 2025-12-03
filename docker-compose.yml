@@ -10,8 +10,8 @@ services:
     volumes:
       # Монтируем директорию с файлами для сохранения данных
       - ./files:/app/files
-      # Монтируем директорию для SQLite базы данных (данные сохраняются на хосте)
-      - ./data:/app/data
+      # Volume для SQLite базы данных (данные сохраняются в Docker volume)
+      - sqlite_data:/app/data
     networks:
       - bot_network
     # Раскомментируйте, если используете PostgreSQL
@@ -36,4 +36,8 @@ services:
 networks:
   bot_network:
     driver: bridge
+
+volumes:
+  sqlite_data:
+    driver: local
 
