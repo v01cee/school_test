@@ -15,7 +15,11 @@ admin_callback_router = Router()
 
 @admin_callback_router.callback_query(F.data == "table_admin")
 async def table_admin(call: CallbackQuery, variables: Variables):
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.info("DEBUG: table_admin вызван")
     excel_file: BytesIO = export_all_user_results_to_excel(variables)
+    logger.info(f"DEBUG: Excel файл создан, размер: {len(excel_file.getvalue())} bytes")
 
 
     document = types.BufferedInputFile(

@@ -8,15 +8,20 @@ from middlewares.enums import Variables
 
 
 def export_all_user_results_to_excel(variables: Variables) -> BytesIO:
+    import logging
+    logger = logging.getLogger(__name__)
+    
     test_result_repo = variables.db.test_result
     user_repo = variables.db.user
 
     results = test_result_repo.get_all_with_users()  # 👈 ты должен реализовать эту функцию в репозитории
     
     # Отладочный вывод
-    print(f"DEBUG: Получено результатов из БД: {len(results)}")
+    logger.info(f"DEBUG: Получено результатов из БД: {len(results)}")
     if results:
-        print(f"DEBUG: Первый результат: {results[0]}")
+        logger.info(f"DEBUG: Первый результат: {results[0]}")
+    else:
+        logger.warning("DEBUG: Результаты пустые!")
 
     data = []
     for result, user in results:
