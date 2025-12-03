@@ -12,6 +12,11 @@ def export_all_user_results_to_excel(variables: Variables) -> BytesIO:
     user_repo = variables.db.user
 
     results = test_result_repo.get_all_with_users()  # 👈 ты должен реализовать эту функцию в репозитории
+    
+    # Отладочный вывод
+    print(f"DEBUG: Получено результатов из БД: {len(results)}")
+    if results:
+        print(f"DEBUG: Первый результат: {results[0]}")
 
     data = []
     for result, user in results:
