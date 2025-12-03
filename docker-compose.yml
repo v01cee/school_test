@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: school_test_bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Монтируем директорию с файлами для сохранения данных
+      - ./files:/app/files
+      # Монтируем директорию для SQLite базы данных (данные сохраняются на хосте)
+      - ./data:/app/data
+    networks:
+      - bot_network
+    # Раскомментируйте, если используете PostgreSQL
+    # depends_on:
+    #   - postgres
+
+  # Опциональная PostgreSQL база данных
+  # Раскомментируйте этот сервис, если хотите использовать PostgreSQL
+  # postgres:
+  #   image: postgres:16-alpine
+  #   container_name: school_test_db
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_DB: ${POSTGRES_DB:-school_test}
+  #     POSTGRES_USER: ${POSTGRES_USER:-postgres}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - bot_network
+
+networks:
+  bot_network:
+    driver: bridge
+

@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: school_test_bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Монтируем директорию с файлами для сохранения данных
+      - ./files:/app/files
+    depends_on:
+      - postgres
+    networks:
+      - bot_network
+
+  # PostgreSQL база данных
+  postgres:
+    image: postgres:16-alpine
+    container_name: school_test_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-school_test}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - bot_network
+    ports:
+      # Раскомментируйте, если нужен доступ к БД извне
+      # - "5432:5432"
+
+networks:
+  bot_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+
