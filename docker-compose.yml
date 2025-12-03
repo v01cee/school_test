@@ -11,6 +11,7 @@ services:
       # Монтируем директорию с файлами для сохранения данных
       - ./files:/app/files
       # Volume для SQLite базы данных (данные сохраняются в Docker volume)
+      # Можно использовать bind mount для доступа к базе на хосте: ./data:/app/data
       - sqlite_data:/app/data
     networks:
       - bot_network

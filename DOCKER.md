@@ -23,10 +23,17 @@ ADMINS=123456789,987654321
 ### 2. Запуск с SQLite (по умолчанию)
 
 ```bash
-# Создайте директорию для данных
-mkdir -p data
+# Если у вас есть старая база данных (school_test.db), скопируйте её в volume:
+# 1. Запустите контейнер временно
+docker-compose up -d
 
-# Запустите бота
+# 2. Скопируйте старую базу в volume
+docker cp school_test.db school_test_bot:/app/data/bot_database.db
+
+# 3. Перезапустите контейнер
+docker-compose restart
+
+# Или если базы еще нет, просто запустите:
 docker-compose up -d
 
 # Просмотр логов
