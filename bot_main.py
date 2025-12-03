@@ -21,9 +21,9 @@ async def main():
     logging.basicConfig(level=logging.INFO)
     engine = create_engine(env_settings.DATABASE_URL)
     BaseModel.metadata.create_all(bind=engine)
-    session = sessionmaker(engine, expire_on_commit=False)
-    with session() as session:
-        db = DBClass(session=session)
+    SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
+    session = SessionLocal()
+    db = DBClass(session=session)
     storage = MemoryStorage()
 
     bot = Bot(token=env_settings.BOT_TOKEN, default=DefaultBotProperties(parse_mode="HTML"))
